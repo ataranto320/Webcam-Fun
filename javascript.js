@@ -29,8 +29,19 @@ function paintToCanvas() {
 }
 
 function takePhoto() {
+    // played the sound
     snap.currentTime = 0;
     snap.play();
+
+    // take data out of the canvas
+    const data = canvas.toDataURL("image/jpg"); // could also be png
+    // console.log(data);
+    const link = document.createElement("a");
+    link.href = data;
+    link.setAttribute("download", "handsome");
+    // link.textContent = "Download Image";
+    link.innerHTML = `<img src="${data}" alt="Handsome Fellow" />`;
+    strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
